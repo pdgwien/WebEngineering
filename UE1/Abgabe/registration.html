@@ -14,30 +14,31 @@
 		<form>
 			<p>
 				<label for="anrede">Anrede *</label>
-				<select id ="anrede">
+				<select id ="anrede" required>
+					<option value="">Bitte wählen</option>
 					<option value="Frau">Frau</option>
 					<option value="Herr">Herr</option>
 				</select>
 			</p>
 			<p>
 				<label for="firstName">Vorname *</label>
-				<input type="text" id="firstName"/>
+				<input type="text" id="firstName" required/>
 			</p>
 			<p>
 				<label for="lastName">Nachname *</label>
-				<input type="text" id="lastName"/>
+				<input type="text" id="lastName" required />
 			</p>
 			<p>
 				<label for="birthday">Geburtsdatum *</label>
-				<input type="date" id="birthday"/>
+				<input type="date" id="birthday" required/>
 			</p>
 			<p>
 				<label for="email">Email *</label>
-				<input type="text" id="email"/>
+				<input type="email" id="email" required/>
 			</p>
 			<p>
 				<label for="password">Passwort *</label>
-				<input type="password" id="password"/>
+				<input type="password" id="password" required />
 			</p>
 
 			<h3>Versandadresse</h3>
@@ -58,7 +59,7 @@
 				</select>			
 			</p>
 			<p>
-				<input type="checkbox" id="agb"/>
+				<input type="checkbox" id="agb" required />
 				<label for="agb"> Mit meiner Anmeldung akzeptiere ich die AGB. *</label> 
 			</p>
 			<p><input type="submit" id="register" disabled value="Registrieren"/></p>
