@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 	<html lang="de">
 	<head>
+		<link rel="stylesheet" type = "text/css" href="regstyle.css">
 		<meta charset="utf-8"/>
 		<title>BIG Bid</title>
 	</head>
 	<body>
 		<header>
-			<img src ="./images/big-logo-small.png" alt= "BIG Logo"> 
+			<img id="logo" src ="./images/big-logo-small.png" alt= "BIG Logo">
 			<h1> BIG Bid</h1>
 		</header>
-		<h2>Registrieren</h2>
-		<h3>Persönliche Daten</h3>
-		<form>
+		<form class = "flex-container">
+			<h2>Registrieren</h2>
+			<h3>Persönliche Daten</h3>
 			<p>
 				<label for="anrede">Anrede *</label>
 				<select id ="anrede" required>
@@ -56,19 +57,19 @@
 					<option value="Österreich">Österreich</option>
 					<option value="Deutschland">Deutschland</option>
 					<option value="Schweiz">Schweiz</option>
-				</select>			
+				</select>
 			</p>
-			<p>
+			<p class = "item">
 				<input type="checkbox" id="agb" required />
-				<label for="agb"> Mit meiner Anmeldung akzeptiere ich die AGB. *</label> 
+				<label for="agb"> Mit meiner Anmeldung akzeptiere ich die AGB. *</label>
 			</p>
-			<p><input type="submit" id="register" disabled value="Registrieren"/></p>
+			<p class = "item"><input type="submit" id="register" disabled value="Registrieren"/></p>
 
 		</form>
-		<p>Mit * gekennzeichnete Felder sind Pflichtfelder.</p>
-		
+		<p class="text_center">Mit * gekennzeichnete Felder sind Pflichtfelder.</p>
+
 		<footer>
-			<p>&copy; 2016 BIG Bid</p>
+			<p class="text_center">&copy; 2016 BIG Bid</p>
 		</footer>
 	</body>
 </html>
