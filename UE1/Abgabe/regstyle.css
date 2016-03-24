@@ -1,0 +1,63 @@
+header{
+  display: flex;
+  align-items: center;
+  height: 4.5em;
+  background: linear-gradient(#fa7600, #cf4b00);
+  box-shadow: 0em 0.1em 0.3em grey;
+}
+
+header img{
+  margin: 0.8em;
+}
+
+body{
+  font-family: verdana;
+  background: linear-gradient(#F7F8FB,#CFD8E8)
+}
+
+h2{
+  margin-top: 2em;
+}
+
+input,select{
+  float: right;
+  width: 27em;
+  height: 2.7em;
+  border-radius: 0.4em;
+  padding: 0.2em 0.8em;
+  box-sizing: border-box;
+  border: 0.15em solid gainsboro;
+
+}
+
+.flex-container{
+  display: flex;
+  max-width: 50em;
+  margin: auto;
+  flex-flow: column nowrap;
+}
+
+
+.item{
+  display: inline;
+  align-self: center;
+}
+
+#register{
+  float:none;
+  background: linear-gradient(#c7c7c7,#9f9f9f);
+  width: 32em;
+  height: 3.4em;
+  border: 0.15em solid #999999;
+  color: #101010;
+}
+
+#agb{
+  float:none;
+  width:auto;
+  height:auto;
+}
+
+.text_center{
+  text-align: center;
+}
