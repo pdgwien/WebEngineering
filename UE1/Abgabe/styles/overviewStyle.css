@@ -1,0 +1,46 @@
+header{
+  display: flex;
+  align-items: center;
+  height: 70px;
+  background: linear-gradient(#fa7600, #cf4b00);
+  box-shadow: 0px 1px 7px grey;
+}
+
+header img{
+  margin: 12px;
+}
+
+#signOut{
+  margin-left: auto;
+  margin-right: 10px;
+  background: linear-gradient(#0068AA, #003E7F);
+  width: 112px;
+  height:2.8em;
+  border: 1.5px solid #003E7F;
+  border-radius: 6px;
+  color: white;
+}
+
+body{
+  font-family: arial;
+}
+
+aside{
+  width: 25%;
+  height: 100%;
+}
+
+#products{
+  display: inline-flex;
+  flex-flow: row wrap;
+  width: auto;
+}
+
+#products h2{
+  flex-basis:100%;
+}
+
+#products article{
+  width: 220px;
+  height: 340px;
+}
