@@ -1,4 +1,4 @@
-header{
+header {
   display: flex;
   align-items: center;
   height: 70px;
@@ -6,29 +6,29 @@ header{
   box-shadow: 0px 1px 7px grey;
 }
 
-header img{
+header img {
   margin: 12px;
 }
 
-body{
-  font-family: verdana;
+body {
+  font-family: arial;
   background: linear-gradient(#F7F8FB,#CFD8E8)
 }
 
-h2{
+h2 {
   margin-top: 40px;
 }
 
-.item{
+.item {
   display: inline;
   align-self: center;
 }
 
-.text_center{
+.text_center {
   text-align: center;
 }
 
-#agb{
+#agb {
   float:none;
   display: inline;
   width:0.8em;
@@ -37,7 +37,7 @@ h2{
 
 /*All selectors below are influenced by media queries*/
 
-input,select{
+input, select {
   float: right;
   height: 2.4em;
   border-radius: 5px;
@@ -46,14 +46,14 @@ input,select{
   border: 1.5px solid gainsboro;
 }
 
-.flex-container{
+.flex-container {
   display: flex;
   flex-flow: column nowrap;
   margin: auto;
 }
 
 
-#register{
+#register {
   float:none;
   background: linear-gradient(#c7c7c7,#9f9f9f);
   height: 3.4em;
@@ -61,7 +61,7 @@ input,select{
   color: #101010;
 }
 
-@media screen and (max-width: 399px){
+@media screen and (max-width: 399px) {
   input,select{
     display:block;
     float: none;
@@ -71,21 +71,21 @@ input,select{
     padding: 3px 0.5%;
   }
 
-  #register{
+  #register {
     width:75vw;
   }
 }
 
-@media screen and (max-width: 479px) and (min-width: 399px){
+@media screen and (max-width: 479px) and (min-width: 399px) {
   input,select{
     width: 175px;
   }
 
-  .flex-container{
+  .flex-container {
     max-width: 359px;
   }
 
-  .item{
+  .item {
     display:block;
   }
   #register{
@@ -93,8 +93,8 @@ input,select{
   }
 }
 
-@media screen and (max-width: 767px) and (min-width: 479px){
-  input,select{
+@media screen and (max-width: 767px) and (min-width: 479px) {
+  input,select {
     width: 215px;
   }
 
@@ -102,35 +102,35 @@ input,select{
     max-width: 439px;
   }
 
-  #register{
+  #register {
     width:220px;
   }
 }
 
-@media screen and (max-width: 1023px) and (min-width: 767px){
-  input,select{
+@media screen and (max-width: 1023px) and (min-width: 767px) {
+  input,select
     width: 360px;
   }
 
-  .flex-container{
+  .flex-container {
     max-width: 727px;
   }
 
-  #register{
+  #register {
     width:360px;
   }
 }
 
-@media screen and (min-width: 1023px){
-  input,select{
+@media screen and (min-width: 1023px) {
+  input,select {
     width: 370px;
   }
 
-  .flex-container{
+  .flex-container {
     max-width: 800px;
   }
 
-  #register{
+  #register {
     width:375px;
   }
 }
