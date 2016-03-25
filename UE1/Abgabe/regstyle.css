@@ -1,13 +1,13 @@
 header{
   display: flex;
   align-items: center;
-  height: 4.5em;
+  height: 70px;
   background: linear-gradient(#fa7600, #cf4b00);
-  box-shadow: 0em 0.1em 0.3em grey;
+  box-shadow: 0px 1px 7px grey;
 }
 
 header img{
-  margin: 0.8em;
+  margin: 12px;
 }
 
 body{
@@ -16,48 +16,121 @@ body{
 }
 
 h2{
-  margin-top: 2em;
+  margin-top: 40px;
 }
-
-input,select{
-  float: right;
-  width: 27em;
-  height: 2.7em;
-  border-radius: 0.4em;
-  padding: 0.2em 0.8em;
-  box-sizing: border-box;
-  border: 0.15em solid gainsboro;
-
-}
-
-.flex-container{
-  display: flex;
-  max-width: 50em;
-  margin: auto;
-  flex-flow: column nowrap;
-}
-
 
 .item{
   display: inline;
   align-self: center;
 }
 
-#register{
-  float:none;
-  background: linear-gradient(#c7c7c7,#9f9f9f);
-  width: 32em;
-  height: 3.4em;
-  border: 0.15em solid #999999;
-  color: #101010;
+.text_center{
+  text-align: center;
 }
 
 #agb{
   float:none;
-  width:auto;
-  height:auto;
+  display: inline;
+  width:0.8em;
+  height:0.8em;
 }
 
-.text_center{
-  text-align: center;
+/*All selectors below are influenced by media queries*/
+
+input,select{
+  float: right;
+  height: 2.4em;
+  border-radius: 5px;
+  padding: 3px 12px;
+  box-sizing: border-box;
+  border: 1.5px solid gainsboro;
+}
+
+.flex-container{
+  display: flex;
+  flex-flow: column nowrap;
+  margin: auto;
+}
+
+
+#register{
+  float:none;
+  background: linear-gradient(#c7c7c7,#9f9f9f);
+  height: 3.4em;
+  border: 1.5px solid #999999;
+  color: #101010;
+}
+
+@media screen and (max-width: 399px){
+  input,select{
+    display:block;
+    float: none;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 3px 0.5%;
+  }
+
+  #register{
+    width:75vw;
+  }
+}
+
+@media screen and (max-width: 479px) and (min-width: 399px){
+  input,select{
+    width: 175px;
+  }
+
+  .flex-container{
+    max-width: 359px;
+  }
+
+  .item{
+    display:block;
+  }
+  #register{
+    width:175px;
+  }
+}
+
+@media screen and (max-width: 767px) and (min-width: 479px){
+  input,select{
+    width: 215px;
+  }
+
+  .flex-container{
+    max-width: 439px;
+  }
+
+  #register{
+    width:220px;
+  }
+}
+
+@media screen and (max-width: 1023px) and (min-width: 767px){
+  input,select{
+    width: 360px;
+  }
+
+  .flex-container{
+    max-width: 727px;
+  }
+
+  #register{
+    width:360px;
+  }
+}
+
+@media screen and (min-width: 1023px){
+  input,select{
+    width: 370px;
+  }
+
+  .flex-container{
+    max-width: 800px;
+  }
+
+  #register{
+    width:375px;
+  }
 }
