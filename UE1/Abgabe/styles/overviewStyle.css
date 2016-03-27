@@ -1,3 +1,228 @@
+
+/*All selectors below are influenced by the media queries*/
+
+/*Settings for higher resolutions/general settings
+below are changed by some media queries*/
+aside {
+  float: right;
+}
+
+aside h3 {
+  border-top: 1.65px solid #c3c3c3;
+  padding-top: 10px;
+}
+
+#products {
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  margin-top: 20px;
+  border-right: 1.65px solid #c3c3c3;
+}
+
+#products h2 {
+  flex-basis:100%;
+  margin: 0px 0px 5px 10px;
+}
+
+/*Begin of Media Queries*/
+
+@media screen and (min-width: 1023px){
+  aside {
+    width: 30%;
+  }
+
+  #products {
+    width: 69.7%;
+  }
+
+  #products article{
+    width:30%;
+    margin: 10px;
+  }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1023px){
+  aside {
+    width: 31.5%;
+  }
+
+  #products {
+    width: 68%;
+  }
+
+  #products article{
+    width:45%;
+    margin: 10px;
+  }
+}
+
+@media screen and (min-width: 479px) and (max-width: 767px){
+  aside {
+    float: none;
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+  }
+
+  aside article {
+    flex: 1 1 auto;
+  }
+
+  aside article:nth-of-type(2) {
+    border-left: 1.65px solid #c3c3c3;
+  }
+
+  aside h2, aside h3 {
+    border-top: none;
+    padding-top: 0px;
+    margin: 0px;
+  }
+
+  #products {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+    border-top: 1.65px solid #c3c3c3;
+    border-right: none;
+  }
+
+  #products h2 {
+    margin: 20px 0px 20px 10px;
+  }
+
+  #products article{
+    width:45.5%;
+    margin: 10px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  aside {
+    float: none;
+    width: 100%;
+  }
+
+  #products {
+    flex-flow: column nowrap;
+    width: auto;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 0px;
+    border-top: 1.65px solid #c3c3c3;
+    border-right: none;
+    padding: 10px;
+  }
+
+  #products h2 {
+    margin: 10px 0px 20px 0px;
+    align-self: flex-start;
+  }
+
+  #products article{
+    width:100%;
+    margin: 10px;
+  }
+}
+
+/*All settings below are not influenced by media queries*/
+
+/*General aside values*/
+aside {
+  height: 100%
+}
+
+aside article {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+aside span {
+  float:right;
+}
+
+#recent {
+  font-style: italic;
+}
+
+#recent li {
+  margin: 8px;
+}
+
+
+/* Concerning the articles */
+
+/*articles in general */
+#products article {
+  height: auto;
+  background-color: white;
+  border-radius: 7px;
+}
+
+/*articles that the user has not bid on*/
+#products article:not(.selected){
+  box-shadow: 0 0 6px #b0b0b0;
+  border: 1px #b0b0b0;
+}
+
+/*articles the user has bid on*/
+.selected {
+  box-shadow: 0 0 6px #d4520b;
+}
+.selected p, .selected h3 {
+  color: #d4520b;
+}
+
+/*expired articles */
+.expired {
+  opacity: 0.4;
+}
+
+/*the image of a articles */
+#products article img {
+  width: 100%;
+  height:auto;
+  border-radius: 7px 7px 0px 0px;
+}
+
+/*the title of a articles*/
+#products h3 {
+  text-align: center;
+  margin: 10px 0px 10px 0px;
+}
+
+/*(first line) */
+#products article p:nth-of-type(1) {
+  text-align: center;
+  margin: 15px 0px 8px 0px;
+  font-size: 1.1em;
+}
+
+/*scales the font size for articles where a bid has been placed*/
+#products article.bidden p:nth-of-type(1) {
+  font-size: 1.5em;
+  margin: 8px 0px 5px 0px;
+}
+
+/*second line*/
+#products article p:nth-of-type(2) {
+  margin: 0px;
+}
+
+/*the counter*/
+#products article p:nth-of-type(2) span:nth-of-type(1) {
+  float: left;
+  margin:0px 0px 15px 10px;
+}
+
+/*the highest bidding user*/
+#products article p:nth-of-type(2) span:nth-of-type(2) {
+  float: right;
+  margin:0px 10px 15px 0px;
+}
+
+/* End of articles */
+
 header {
   display: flex;
   align-items: center;
@@ -27,130 +252,6 @@ body {
   font-family: "Arial", Helvetica, sans-serif ;
   background: linear-gradient(#F7F8FB,#CFD8E8);
 }
-
-/*information about the user*/
-aside {
-  float:right;
-  width: 28%;
-  height: 100%;
-  margin-right: 10px;
-  margin-top: 8px;
-}
-
-aside p{
-}
-
-aside p span {
-  float:right;
-}
-
-aside h3 {
-  border-top: 1.65px solid #c3c3c3;
-  padding-top: 10px;
-}
-
-#recent {
-  font-style: italic;
-}
-
-#recent li {
-  margin: 8px;
-}
-
-
-/*the product section*/
-
-#products {
-  display: inline-flex;
-  flex-flow: row wrap;
-  width: 69%;
-  justify-content: space-around;
-  margin-top: 20px;
-  border-right: 1.65px solid #c3c3c3;
-  padding-right: 10px;
-}
-
-#products h2 {
-  flex-basis:100%;
-  margin-left: 10px;
-  margin-top:  0px;
-}
-
-/* Concerning the articles */
-
-/*products in general */
-#products article {
-  width: 31%;
-  height: auto;
-  background-color: white;
-  margin: 10px 6px 10px 6px;
-  border-radius: 7px;
-}
-
-/*products that the user has not bid on*/
-#products article:not(.selected){
-  box-shadow: 0 0 6px #b0b0b0;
-  border: 1px #b0b0b0;
-}
-
-/*products the user has bid on*/
-.selected {
-  box-shadow: 0 0 6px #d4520b;
-}
-
-.selected p, .selected h3 {
-  color: #d4520b;
-}
-
-/*expired products */
-
-.expired {
-  opacity: 0.4;
-}
-
-/*the image of a product */
-#products article img {
-  width: 100%;
-  height:auto;
-  border-radius: 7px 7px 0px 0px;
-}
-
-/*the title of a product*/
-#products h3 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-/*(first line) */
-#products article p:nth-of-type(1) {
-  text-align: center;
-  margin: 13.8px;
-}
-
-/*scales the font size for products where a bid has been placed*/
-#products article.bidden p:nth-of-type(1) {
-  font-size: 1.5em;
-  margin: 8px;
-}
-
-/*second line*/
-#products article p:nth-of-type(2) {
-  margin: 0px;
-}
-
-/*the counter*/
-#products article p:nth-of-type(2) span:nth-of-type(1) {
-  float: left;
-  margin:0px 0px 20px 10px;
-}
-
-/*the highest bidding user*/
-#products article p:nth-of-type(2) span:nth-of-type(2) {
-  float: right;
-  margin:0px 10px 20px 0px;
-}
-
-/* End of articles */
 
 footer {
   clear:both;
