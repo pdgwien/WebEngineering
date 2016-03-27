@@ -81,7 +81,7 @@ aside h3 {
 
   #products {
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 10px;
     border-top: 1.65px solid #c3c3c3;
     border-right: none;
@@ -92,7 +92,7 @@ aside h3 {
   }
 
   #products article{
-    width:45.5%;
+    width:45.69%;
     margin: 10px;
   }
 }
