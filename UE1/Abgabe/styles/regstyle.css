@@ -35,6 +35,11 @@ h2 {
   height:0.8em;
 }
 
+.warning {
+  color: #FF0000;
+  display: none;
+}
+
 /*All selectors below are influenced by media queries*/
 
 input, select {

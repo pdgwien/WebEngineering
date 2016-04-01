@@ -4,42 +4,50 @@
 		<link rel="stylesheet" type = "text/css" href="styles/regstyle.css">
 		<meta charset="utf-8"/>
 		<title>BIG Bid</title>
+		<script type="text/javascript" src="scripts/jquery.js"></script>
+		<script type="text/javascript" src="scripts/framework.js"></script>
 	</head>
 	<body>
 		<header>
 			<img id="logo" src ="./images/big-logo-small.png" alt= "BIG Logo">
 			<h1> BIG Bid</h1>
 		</header>
-		<form class = "flex-container">
+		<form id="form" class = "flex-container">
 			<h2>Registrieren</h2>
 			<h3>Persönliche Daten</h3>
 			<p>
 				<label for="anrede">Anrede *</label>
-				<select id ="anrede" required>
-					<option value="">Bitte wählen</option>
+				<select name="anrede" id ="anrede" required>
+					<option selected="selected" disabled="disabled" value="">Bitte wählen</option>
 					<option value="Frau">Frau</option>
 					<option value="Herr">Herr</option>
 				</select>
+				<span id="titleWarning" class="warning">Anrede muss ausgewählt werden.</span>
 			</p>
 			<p>
 				<label for="firstName">Vorname *</label>
-				<input type="text" id="firstName" required/>
+				<input type="text" id="firstName" required />
+				<span id="firstNameWarning" class="warning">Vorname darf nicht leer sein.</span>
 			</p>
 			<p>
 				<label for="lastName">Nachname *</label>
 				<input type="text" id="lastName" required />
+				<span id="lastNameWarning" class="warning">Nachname darf nicht leer sein.</span>
 			</p>
 			<p>
 				<label for="birthday">Geburtsdatum *</label>
-				<input type="date" id="birthday" required/>
+				<input type="date" id="birthday" required />
+				<span id="birthdayWarning" class="warning"></span>
 			</p>
 			<p>
 				<label for="email">Email *</label>
-				<input type="email" id="email" required/>
+				<input type="email" id="email" pattern="^\S+@\S+\.\S+$" required/>
+				<span id="emailWarning" class="warning"></span>
 			</p>
 			<p>
 				<label for="password">Passwort *</label>
-				<input type="password" id="password" required />
+				<input type="password" id="password" pattern=".{4,8}" required />
+				<span id="passwordWarning" class="warning">Passwort muss zwischen 4 und 8 Zeichen besitzen.</span>
 			</p>
 
 			<h3>Versandadresse</h3>
@@ -62,6 +70,7 @@
 			<p class = "item">
 				<input type="checkbox" id="agb" required />
 				<label for="agb"> Mit meiner Anmeldung akzeptiere ich die AGB. *</label>
+				<span id="agbWarning" class="warning">AGB müssen akzeptiert werden.</span>
 			</p>
 			<p class = "item"><input type="submit" id="register" disabled value="Registrieren"/></p>
 
@@ -71,5 +80,74 @@
 		<footer>
 			<p class="text_center">&copy; 2016 BIG Bid</p>
 		</footer>
+		<script type="text/javascript">
+			function isEmpty(inputSelector) {
+				return hasFormValidation() ? !$(inputSelector)[0].checkValidity() : ($(inputSelector).val() === '' || $(inputSelector).val() === null || !$(inputSelector).prop(':checked'));
+			};
+			function isEmptyDate(inputSelector) {
+				return hasFormValidation()&&hasNativeDateInput() ? !$(inputSelector)[0].checkValidity() : ($(inputSelector).val() === '' || $(inputSelector).val() === null);
+			};
+			function checkEmptyAndWarn(inputSelector, warningSelector) {
+				if (isEmpty(inputSelector)) {
+					$(warningSelector).show();
+				} else {
+					$(warningSelector).hide();
+				}
+			};
+			$('#anrede').focusout(function() {
+				checkEmptyAndWarn('#anrede', '#titleWarning')
+			});
+			$('#firstName').focusout(function() {
+				$('#anrede').trigger('focusout');
+				checkEmptyAndWarn('#firstName', '#firstNameWarning')
+			});
+			$('#lastName').focusout(function() {
+				$('#firstName').trigger('focusout');
+				checkEmptyAndWarn('#lastName', '#lastNameWarning')
+			});
+			$('#birthday').focusout(function() {
+				$('#lastName').trigger('focusout');
+				if (isEmptyDate('#birthday')) {
+					$('#birthdayWarning').text('Datum darf nicht leer sein.');
+					$('#birthdayWarning').show();
+				} else {
+					$('#birthdayWarning').hide();
+				}
+			});
+			$('#email').focusout(function() {
+				$('#birthday').trigger('focusout');
+				if (isEmpty('#email')) {
+					$('#emailWarning').text(($('#email').val() === '') ? 'Email darf nicht leer sein.' : 'Format der Email inkorrekt.');
+					$('#emailWarning').show();
+				} else {
+					if (!/^\S+@\S+\.\S+$/.test($('#email').val())) {
+						$('#emailWarning').text('Format der Email inkorrekt.');
+						$('#emailWarning').show();
+					}
+					$('#emailWarning').hide();
+				}
+			});
+			$('#password').focusout(function() {
+				$('#email').trigger('focusout');
+				if (hasFormValidation() ? !$('#password')[0].checkValidity() : ($('#password').val() === '' || $('#password').val() === null || $('#password').val().length < 4 || $('#password').val().length > 8)) {
+					$('#passwordWarning').show();
+				} else {
+					$('#passwordWarning').hide();
+				}
+			});
+			$('#agb').change(function() {
+				$('#password').trigger('focusout');
+				isEmpty('#agb', '#agbWarning');
+			});
+			$('#form').change(function() {
+				if (!isEmpty('#anrede') && !isEmpty('#firstName') && !isEmpty('#lastName') && !isEmptyDate('#birtday') && !isEmpty('#email') && !isEmpty('#password') && !isEmpty('#agb')) {
+					if (/^\S+@\S+\.\S+$/.test($('#email').val())) {
+						$('#register').prop('disabled', false);
+					}
+				} else {
+					$('#register').prop('disabled', true);
+				}
+			});
+		</script>
 	</body>
 </html>
