@@ -53,7 +53,7 @@
 			<h3>Versandadresse</h3>
 			<p>
 				<label for="address">Straße/Hausnummer</label>
-				<input type="text" id="address"/>
+				<input type="text" id="address" />
 			</p>
 			<p>
 				<label for="zip">PLZ/Ort</label>
@@ -81,8 +81,11 @@
 			<p class="text_center">&copy; 2016 BIG Bid</p>
 		</footer>
 		<script type="text/javascript">
+			function isChecked(inputSelector, id) {
+				return hasFormValidation() ? !$(inputSelector)[0].checkValidity() : !document.getElementById(id).checked;
+			};
 			function isEmpty(inputSelector) {
-				return hasFormValidation() ? !$(inputSelector)[0].checkValidity() : ($(inputSelector).val() === '' || $(inputSelector).val() === null || !$(inputSelector).prop(':checked'));
+				return hasFormValidation() ? !$(inputSelector)[0].checkValidity() : ($(inputSelector).val() === '' || $(inputSelector).val() === null);
 			};
 			function isEmptyDate(inputSelector) {
 				return hasFormValidation()&&hasNativeDateInput() ? !$(inputSelector)[0].checkValidity() : ($(inputSelector).val() === '' || $(inputSelector).val() === null);
@@ -137,10 +140,14 @@
 			});
 			$('#agb').change(function() {
 				$('#password').trigger('focusout');
-				isEmpty('#agb', '#agbWarning');
+				if (isChecked('#agb', 'agb')) {
+					$('#agbWarning').show();
+				} else {
+					$('#agbWarning').hide();
+				}
 			});
 			$('#form').change(function() {
-				if (!isEmpty('#anrede') && !isEmpty('#firstName') && !isEmpty('#lastName') && !isEmptyDate('#birtday') && !isEmpty('#email') && !isEmpty('#password') && !isEmpty('#agb')) {
+				if (!isEmpty('#anrede') && !isEmpty('#firstName') && !isEmpty('#lastName') && !isEmptyDate('#birthday') && !isEmpty('#email') && !isEmpty('#password') && !isChecked('#agb', 'agb')) {
 					if (/^\S+@\S+\.\S+$/.test($('#email').val())) {
 						$('#register').prop('disabled', false);
 					}
