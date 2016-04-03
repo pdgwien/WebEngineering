@@ -90,6 +90,14 @@
 			function isEmptyDate(inputSelector) {
 				return hasFormValidation()&&hasNativeDateInput() ? !$(inputSelector)[0].checkValidity() : ($(inputSelector).val() === '' || $(inputSelector).val() === null);
 			};
+			function isDateYearsInPast(years, date) {
+				var split = date.split('.')
+				var dateDay = parseInt(split[0], 10)
+				var dateMonth = parseInt(split[1], 10)
+				var dateYear = parseInt(split[2], 10)
+				var tempDate = new Date(dateYear + years, dateMonth - 1, dateDay)
+				return tempDate <= new Date();
+			};
 			function checkEmptyAndWarn(inputSelector, warningSelector) {
 				if (isEmpty(inputSelector)) {
 					$(warningSelector).show();
@@ -114,7 +122,12 @@
 					$('#birthdayWarning').text('Datum darf nicht leer sein.');
 					$('#birthdayWarning').show();
 				} else {
-					$('#birthdayWarning').hide();
+					if (!isDateYearsInPast(18, getNormalizedDateString('#birthday'))) {
+						$('#birthdayWarning').text('Sie müssen mindestens 18 Jahre alt sein.');
+						$('#birthdayWarning').show();
+					} else {
+						$('#birthdayWarning').hide();
+					}
 				}
 			});
 			$('#email').focusout(function() {
@@ -148,7 +161,7 @@
 			});
 			$('#form').change(function() {
 				if (!isEmpty('#anrede') && !isEmpty('#firstName') && !isEmpty('#lastName') && !isEmptyDate('#birthday') && !isEmpty('#email') && !isEmpty('#password') && !isChecked('#agb', 'agb')) {
-					if (/^\S+@\S+\.\S+$/.test($('#email').val())) {
+					if (/^\S+@\S+\.\S+$/.test($('#email').val()) && isDateYearsInPast(18, getNormalizedDateString('#birthday'))) {
 						$('#register').prop('disabled', false);
 					}
 				} else {
