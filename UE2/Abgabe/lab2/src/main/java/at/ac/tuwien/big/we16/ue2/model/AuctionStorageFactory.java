@@ -2,9 +2,13 @@ package at.ac.tuwien.big.we16.ue2.model;
 
 import at.ac.tuwien.big.we16.ue2.productdata.JSONDataLoader;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class AuctionStorageFactory {
+
+    static final long MINUTE_IN_MILLIS = 60000;
 
     private static AuctionStorage storage;
 
@@ -37,7 +41,8 @@ public class AuctionStorageFactory {
     }
 
     private static Auction initAuction(Auction a){
-        a.setExpirationDate("2016,04,17,15,30,00,000");
+//        a.setExpirationDate("2016,04,17,15,30,00,000");
+        a.setExpirationDate(buildExpirationDate());
         a.setHighestBid(0);
         a.setHighestBidder(null);
         return a;
@@ -48,5 +53,13 @@ public class AuctionStorageFactory {
             createStorage();
         }
         return storage;
+    }
+
+    public static String buildExpirationDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss,sss");
+        Calendar cal = Calendar.getInstance();
+        Date date = new Date(cal.getTimeInMillis()+MINUTE_IN_MILLIS*10);
+        return sdf.format(date);
+
     }
 }

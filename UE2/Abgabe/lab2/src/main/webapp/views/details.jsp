@@ -39,7 +39,7 @@ bidderName = auction.getHighestBidder().getFullName();
                     <span class="highest-bidder"><%=bidderName%></span> verkauft.
                 </p>
             </div>
-            <p class="detail-time">Restzeit: <span data-end-time="2016,03,14,15,05,19,796"
+            <p class="detail-time">Restzeit: <span data-end-time="<%=auction.getExpirationDate()%>"
                                                    class="detail-rest-time js-time-left"></span>
             </p>
             <form class="bid-form" method="post" action="">

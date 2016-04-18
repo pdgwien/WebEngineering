@@ -12,7 +12,7 @@ public class Auction {
     private String image;
 
     public String displayHighestBid(){
-        return ((highestBid/100) + "," + (highestBid%100==0?"":highestBid%100) + "€");
+        return ((highestBid/100) + "," + (highestBid%100==0?"00":highestBid%100) + "€");
     }
 
     public long getHighestBid(){
@@ -24,21 +24,21 @@ public class Auction {
     }
 
     /*
-    @return The expiration date, format: "yyyy,MM,dd,mm,ss,sss"
+    @return The expiration date, format: "yyyy,MM,dd,HH,mm,ss,sss"
      */
     public String getExpirationDate(){
         return expirationDate;
     }
 
     /*
-    @param expirationDate format: "yyyy,MM,dd,mm,ss,sss"
+    @param expirationDate format: "yyyy,MM,dd,HH,mm,ss,sss"
      */
     public void setExpirationDate(String expirationDate){
         this.expirationDate = expirationDate;
     }
 
     public boolean isExpired(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy,MM,dd,mm,ss,sss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss,sss");
         boolean expired = false;
         try {
             Date expDate = sdf.parse(expirationDate);

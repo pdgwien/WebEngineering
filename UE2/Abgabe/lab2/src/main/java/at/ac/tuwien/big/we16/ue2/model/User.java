@@ -49,7 +49,7 @@ public class User{
       }
 
     public String displayCredit(){
-        return ((credit/100) + "," + (credit%100==0?"":credit%100) + "€");
+        return ((credit/100) + "," + (credit%100==0?"00":credit%100) + "€");
       }
 
     public long getCredit(){
