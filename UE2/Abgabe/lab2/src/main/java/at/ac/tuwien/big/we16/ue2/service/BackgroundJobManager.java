@@ -41,6 +41,7 @@ public class BackgroundJobManager implements ServletContextListener {
         computer2.setWonAuctions(0);
         UserStorageFactory.getUserStorage().addUser(computer2);
         scheduler.scheduleAtFixedRate(new ComputerBidJob(computer2), 5, 10, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(new FindExpiredAuctionsJob(), 0, 1, TimeUnit.SECONDS);
     }
 
     @Override

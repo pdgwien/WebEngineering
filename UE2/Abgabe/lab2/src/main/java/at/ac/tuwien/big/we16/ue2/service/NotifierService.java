@@ -1,6 +1,9 @@
 package at.ac.tuwien.big.we16.ue2.service;
 
+import at.ac.tuwien.big.we16.ue2.message.AuctionExpiredMessage;
 import at.ac.tuwien.big.we16.ue2.message.Message;
+import at.ac.tuwien.big.we16.ue2.model.Auction;
+import at.ac.tuwien.big.we16.ue2.model.User;
 import com.google.gson.Gson;
 
 import javax.servlet.http.HttpSession;
@@ -26,6 +29,28 @@ public class NotifierService {
         for (Session user: clients.keySet()) {
             try {
                 user.getBasicRemote().sendText(gson.toJson(message));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void send(User user, Message message) {
+        clients.entrySet().stream().filter(c -> c.getValue().getAttribute("user") == user).forEach(c -> {
+            try {
+                c.getKey().getBasicRemote().sendText(gson.toJson(message));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+    
+    public void broadcastPersonalExpiry(Auction auction) {
+        for (Map.Entry<Session, HttpSession> entry : clients.entrySet()) {
+            User user = (User) entry.getValue().getAttribute("user");
+            try {
+                entry.getKey().getBasicRemote().sendText(gson.toJson(new AuctionExpiredMessage(auction.getName(), user.getCredit(),
+                        user.getCurrentAuctions(), user.getLostAuctions(), user.getWonAuctions())));
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -1,5 +1,6 @@
 package at.ac.tuwien.big.we16.ue2.model;
 
+import at.ac.tuwien.big.we16.ue2.message.BalanceMessage;
 import at.ac.tuwien.big.we16.ue2.message.BidMessage;
 import at.ac.tuwien.big.we16.ue2.service.NotifierService;
 import at.ac.tuwien.big.we16.ue2.service.ServiceFactory;
@@ -7,6 +8,8 @@ import at.ac.tuwien.big.we16.ue2.service.ServiceFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Auction {
     private long highestBid;
@@ -14,6 +17,8 @@ public class Auction {
     private User highestBidder;
     private String name;
     private String image;
+    private boolean notified = false;
+    private Set<User> bidders = new HashSet<>();
     private NotifierService notifierService;
 
     public Auction() {
@@ -29,11 +34,14 @@ public class Auction {
                         this.getHighestBidder().setCredit(this.getHighestBidder().getCredit() + this.getHighestBid());
                     }
                     this.setHighestBid(amount);
+                    if (this.getHighestBidder() != null) {
+                        notifierService.send(this.getHighestBidder(), new BalanceMessage(this.getHighestBidder().getCredit()));
+                    }
                     this.setHighestBidder(user);
-
                     notifierService.broadcast(new BidMessage(user.getEmail(), amount, this.getName()));
-                    //TODO:
-                    //User per Socket über Guthaben informieren
+                    if (bidders.add(user)) {
+                        user.setCurrentAuctions(user.getCurrentAuctions() + 1);
+                    }
                 }
             }
         }
@@ -101,5 +109,17 @@ public class Auction {
 
     public void setImage(String image){
         this.image = image;
+    }
+
+    public boolean isNotified() {
+        return notified;
+    }
+
+    public void setNotified(boolean notified) {
+        this.notified = notified;
+    }
+
+    public Set<User> getBidders() {
+        return bidders;
     }
 }

@@ -1,5 +1,9 @@
 package at.ac.tuwien.big.we16.ue2.controller;
 
+import at.ac.tuwien.big.we16.ue2.model.User;
+import at.ac.tuwien.big.we16.ue2.model.UserStorage;
+import at.ac.tuwien.big.we16.ue2.model.UserStorageFactory;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -7,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
-
-import at.ac.tuwien.big.we16.ue2.model.*;
 
 public class LoginController extends HttpServlet{
 
