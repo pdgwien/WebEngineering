@@ -5,6 +5,8 @@ import at.ac.tuwien.big.we16.ue2.productdata.JSONDataLoader;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 public class AuctionStorageFactory {
 
@@ -58,7 +60,7 @@ public class AuctionStorageFactory {
     public static String buildExpirationDate(){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss,sss");
         Calendar cal = Calendar.getInstance();
-        Date date = new Date(cal.getTimeInMillis()+MINUTE_IN_MILLIS*10);
+        Date date = new Date(cal.getTimeInMillis() + ThreadLocalRandom.current().nextLong(MINUTE_IN_MILLIS, 10 * MINUTE_IN_MILLIS));
         return sdf.format(date);
 
     }
