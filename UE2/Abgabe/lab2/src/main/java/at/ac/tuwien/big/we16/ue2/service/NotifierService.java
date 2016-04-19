@@ -1,7 +1,11 @@
 package at.ac.tuwien.big.we16.ue2.service;
 
+import at.ac.tuwien.big.we16.ue2.message.Message;
+import com.google.gson.Gson;
+
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
@@ -10,11 +14,22 @@ import java.util.concurrent.ScheduledExecutorService;
 public class NotifierService {
     private static Map<Session, HttpSession> clients = new ConcurrentHashMap<>();
     private final ScheduledExecutorService executor;
+    private static Gson gson = new Gson();
 
     public NotifierService() {
         // Use the scheduled executor to regularly check for recently expired auctions
         // and send a notification to all relevant users.
         this.executor = Executors.newSingleThreadScheduledExecutor();
+    }
+
+    public void broadcast(Message message) {
+        for (Session user: clients.keySet()) {
+            try {
+                user.getBasicRemote().sendText(gson.toJson(message));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**

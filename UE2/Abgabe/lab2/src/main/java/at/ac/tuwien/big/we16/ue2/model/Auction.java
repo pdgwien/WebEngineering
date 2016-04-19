@@ -1,5 +1,9 @@
 package at.ac.tuwien.big.we16.ue2.model;
 
+import at.ac.tuwien.big.we16.ue2.message.BidMessage;
+import at.ac.tuwien.big.we16.ue2.service.NotifierService;
+import at.ac.tuwien.big.we16.ue2.service.ServiceFactory;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,6 +14,31 @@ public class Auction {
     private User highestBidder;
     private String name;
     private String image;
+    private NotifierService notifierService;
+
+    public Auction() {
+        this.notifierService = ServiceFactory.getNotifierService();
+    }
+
+    public boolean bid(User user, long amount) {
+        if (!this.isExpired()) {
+            if (amount > this.getHighestBid()) {
+                if (user.getCredit() >= amount) {
+                    user.setCredit(user.getCredit() - amount);
+                    if (this.getHighestBidder() != null) {
+                        this.getHighestBidder().setCredit(this.getHighestBidder().getCredit() + this.getHighestBid());
+                    }
+                    this.setHighestBid(amount);
+                    this.setHighestBidder(user);
+
+                    notifierService.broadcast(new BidMessage(user.getEmail(), amount, this.getName()));
+                    //TODO:
+                    //User per Socket über Guthaben informieren
+                }
+            }
+        }
+        return false;
+    }
 
     public String displayHighestBid(){
         return ((highestBid/100) + "," + (highestBid%100==0?"00":highestBid%100) + "€");
