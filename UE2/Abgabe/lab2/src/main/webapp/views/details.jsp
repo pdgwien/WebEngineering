@@ -61,5 +61,23 @@ bidderName = auction.getHighestBidder().getFullName();
 </footer>
 <script src="/scripts/jquery.js"></script>
 <script src="/scripts/framework.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var auctionName = "<%= auction.getName() %>";
+        if (supportsLocalStorage()) {
+            if (localStorage.getItem("history") === null) {
+                var items = [];
+            } else {
+                var items = JSON.parse(localStorage.getItem("history"));
+            }
+            var index = $.inArray(auctionName, items);
+            if (index !== -1) {
+                items.splice(index, 1);
+            }
+            items.unshift(auctionName);
+            localStorage.setItem("history", JSON.stringify(items));
+        }
+    });
+</script>
 </body>
 </html>
