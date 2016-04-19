@@ -38,8 +38,9 @@ public class LoginController extends HttpServlet{
             user = new User();
             user.setEmail(email);
             user.setCredit(150000);
-            user.setFirstName("Sepp");
-            user.setLastName("Doe");
+            String[] emailParts = email.split("@");
+            user.setFirstName(emailParts[0]);
+            user.setLastName(emailParts[1]);
             user.setCurrentAuctions(0);
             user.setLostAuctions(0);
             user.setWonAuctions(0);
