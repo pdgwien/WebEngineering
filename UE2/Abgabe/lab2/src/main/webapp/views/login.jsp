@@ -11,7 +11,7 @@
 <a href="#productsheadline" class="accessibility">Zum Inhalt springen</a>
 
 <header aria-labelledby="bannerheadline">
-    <%@ include file="/views/headerLoggedOut.jsp"%>
+    <%@ include file="/views/header.jsp"%>
 </header>
 <div class="main-container">
     <main aria-labelledby="formheadline">
