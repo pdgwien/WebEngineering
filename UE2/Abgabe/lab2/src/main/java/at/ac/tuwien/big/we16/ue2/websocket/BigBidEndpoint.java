@@ -12,7 +12,7 @@ import javax.websocket.server.ServerEndpoint;
 /**
  * This endpoint listens on the /socket URL.
  */
-@ServerEndpoint(value="/socket", configurator = BigBidConfigurator.class)
+@ServerEndpoint(value = "/socket", configurator = BigBidConfigurator.class)
 public class BigBidEndpoint {
     private final NotifierService notifierService;
 

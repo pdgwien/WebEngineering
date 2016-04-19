@@ -1,6 +1,6 @@
 package at.ac.tuwien.big.we16.ue2.model;
 
-public class User{
+public class User {
 
     private String firstName;
     private String lastName;
@@ -12,75 +12,75 @@ public class User{
     private int wonAuctions;
 
 
-    public String getFullName(){
+    public String getFullName() {
         return firstName + " " + lastName;
     }
 
-    public String getFirstName(){
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName){
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getLastName(){
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName){
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email;
-      }
+    }
 
-    public void setEmail(String email){
+    public void setEmail(String email) {
         this.email = email;
-      }
+    }
 
-    public String getPassword(){
+    public String getPassword() {
         return password;
-      }
+    }
 
-    public void setPassword(String password){
+    public void setPassword(String password) {
         this.password = password;
-      }
+    }
 
-    public String displayCredit(){
-        return ((credit/100) + "," + (credit%100==0?"00":credit%100) + "€");
-      }
+    public String displayCredit() {
+        return ((credit / 100) + "," + (credit % 100 == 0 ? "00" : credit % 100) + "€");
+    }
 
-    public long getCredit(){
+    public long getCredit() {
         return credit;
     }
 
-    public void setCredit(long credit){
+    public void setCredit(long credit) {
         this.credit = credit;
-      }
+    }
 
-    public int getCurrentAuctions(){
+    public int getCurrentAuctions() {
         return currentAuctions;
     }
 
-    public void setCurrentAuctions(int currentAuctions){
+    public void setCurrentAuctions(int currentAuctions) {
         this.currentAuctions = currentAuctions;
     }
 
-    public int getLostAuctions(){
+    public int getLostAuctions() {
         return lostAuctions;
     }
 
-    public void setLostAuctions(int lostAuctions){
+    public void setLostAuctions(int lostAuctions) {
         this.lostAuctions = lostAuctions;
     }
 
-    public int getWonAuctions(){
+    public int getWonAuctions() {
         return wonAuctions;
     }
 
-    public void setWonAuctions(int wonAuctions){
+    public void setWonAuctions(int wonAuctions) {
         this.wonAuctions = wonAuctions;
     }
 

@@ -1,9 +1,7 @@
 package at.ac.tuwien.big.we16.ue2.controller;
 
-import at.ac.tuwien.big.we16.ue2.model.Auction;
 import at.ac.tuwien.big.we16.ue2.model.AuctionStorage;
 import at.ac.tuwien.big.we16.ue2.model.AuctionStorageFactory;
-import at.ac.tuwien.big.we16.ue2.model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,10 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 public class OverviewController extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
         AuctionStorage auctionStorage = AuctionStorageFactory.getAuctionStorage();

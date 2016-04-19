@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Created by Fabian on 16.04.2016.
  */
-public class DetailsController extends HttpServlet{
+public class DetailsController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -25,7 +25,7 @@ public class DetailsController extends HttpServlet{
         String auctionName = request.getParameter("name");
         Auction auction = auctionStorage.getAuctionByName(auctionName);
 
-        request.setAttribute("auction",auction);
+        request.setAttribute("auction", auction);
 
         RequestDispatcher dis = getServletContext().getRequestDispatcher("/views/details.jsp");
         dis.forward(request, response);

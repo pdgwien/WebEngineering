@@ -1,6 +1,8 @@
 package at.ac.tuwien.big.we16.ue2.service;
 
-import at.ac.tuwien.big.we16.ue2.model.*;
+import at.ac.tuwien.big.we16.ue2.model.Auction;
+import at.ac.tuwien.big.we16.ue2.model.AuctionStorage;
+import at.ac.tuwien.big.we16.ue2.model.AuctionStorageFactory;
 
 /**
  * Created by Patrick on 19/04/16.
@@ -23,9 +25,13 @@ public class FindExpiredAuctionsJob implements Runnable {
     private void updateData(Auction auction) {
         auction.setNotified(true);
         if (auction.getHighestBidder() != null) {
-            auction.getBidders().forEach(user -> { user.setCurrentAuctions(user.getCurrentAuctions() - 1); });
+            auction.getBidders().forEach(user -> {
+                user.setCurrentAuctions(user.getCurrentAuctions() - 1);
+            });
             auction.getBidders().remove(auction.getHighestBidder());
-            auction.getBidders().stream().forEach(user -> { user.setLostAuctions(user.getLostAuctions() + 1); });
+            auction.getBidders().stream().forEach(user -> {
+                user.setLostAuctions(user.getLostAuctions() + 1);
+            });
             auction.getHighestBidder().setWonAuctions(auction.getHighestBidder().getWonAuctions() + 1);
         }
         this.notifierService.broadcastPersonalExpiry(auction);

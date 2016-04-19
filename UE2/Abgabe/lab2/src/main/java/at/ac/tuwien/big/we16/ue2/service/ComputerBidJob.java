@@ -1,6 +1,9 @@
 package at.ac.tuwien.big.we16.ue2.service;
 
-import at.ac.tuwien.big.we16.ue2.model.*;
+import at.ac.tuwien.big.we16.ue2.model.Auction;
+import at.ac.tuwien.big.we16.ue2.model.AuctionStorage;
+import at.ac.tuwien.big.we16.ue2.model.AuctionStorageFactory;
+import at.ac.tuwien.big.we16.ue2.model.User;
 
 import java.util.concurrent.ThreadLocalRandom;
 

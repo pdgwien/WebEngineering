@@ -48,33 +48,33 @@ public class Auction {
         return false;
     }
 
-    public String displayHighestBid(){
-        return ((highestBid/100) + "," + (highestBid%100==0?"00":highestBid%100) + "€");
+    public String displayHighestBid() {
+        return ((highestBid / 100) + "," + (highestBid % 100 == 0 ? "00" : highestBid % 100) + "€");
     }
 
-    public long getHighestBid(){
+    public long getHighestBid() {
         return highestBid;
     }
 
-    public void setHighestBid(long highestBid){
+    public void setHighestBid(long highestBid) {
         this.highestBid = highestBid;
     }
 
     /*
     @return The expiration date, format: "yyyy,MM,dd,HH,mm,ss,sss"
      */
-    public String getExpirationDate(){
+    public String getExpirationDate() {
         return expirationDate;
     }
 
     /*
     @param expirationDate format: "yyyy,MM,dd,HH,mm,ss,sss"
      */
-    public void setExpirationDate(String expirationDate){
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    public boolean isExpired(){
+    public boolean isExpired() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss,sss");
         boolean expired = false;
         try {
@@ -87,27 +87,27 @@ public class Auction {
         return expired;
     }
 
-    public User getHighestBidder(){
+    public User getHighestBidder() {
         return highestBidder;
     }
 
-    public void setHighestBidder(User highestBidder){
+    public void setHighestBidder(User highestBidder) {
         this.highestBidder = highestBidder;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getImage(){
+    public String getImage() {
         return image;
     }
 
-    public void setImage(String image){
+    public void setImage(String image) {
         this.image = image;
     }
 

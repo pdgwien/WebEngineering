@@ -16,8 +16,8 @@ import java.util.concurrent.ScheduledExecutorService;
 
 public class NotifierService {
     private static Map<Session, HttpSession> clients = new ConcurrentHashMap<>();
-    private final ScheduledExecutorService executor;
     private static Gson gson = new Gson();
+    private final ScheduledExecutorService executor;
 
     public NotifierService() {
         // Use the scheduled executor to regularly check for recently expired auctions
@@ -26,7 +26,7 @@ public class NotifierService {
     }
 
     public void broadcast(Message message) {
-        for (Session user: clients.keySet()) {
+        for (Session user : clients.keySet()) {
             try {
                 user.getBasicRemote().sendText(gson.toJson(message));
             } catch (IOException e) {
@@ -44,7 +44,7 @@ public class NotifierService {
             }
         });
     }
-    
+
     public void broadcastPersonalExpiry(Auction auction) {
         for (Map.Entry<Session, HttpSession> entry : clients.entrySet()) {
             User user = (User) entry.getValue().getAttribute("user");
@@ -76,7 +76,7 @@ public class NotifierService {
     /**
      * Call this method from your servlet's shutdown listener to cleanly
      * shutdown the thread when the application stops.
-     * 
+     * <p>
      * See http://www.deadcoderising.com/execute-code-on-webapp-startup-and-shutdown-using-servletcontextlistener/
      */
     public void stop() {

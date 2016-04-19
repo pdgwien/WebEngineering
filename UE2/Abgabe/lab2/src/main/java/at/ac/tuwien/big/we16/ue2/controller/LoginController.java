@@ -12,18 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class LoginController extends HttpServlet{
+public class LoginController extends HttpServlet {
 
-    public LoginController(){
-    super();
-  }
+    public LoginController() {
+        super();
+    }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dis = getServletContext().getRequestDispatcher("/views/login.jsp");
         dis.forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //TODO: Register Session
 
@@ -35,7 +35,7 @@ public class LoginController extends HttpServlet{
         UserStorage userStorage = UserStorageFactory.getUserStorage();
 
         User user = userStorage.getUserByEmail(email);
-        if(user == null){
+        if (user == null) {
             user = new User();
             user.setEmail(email);
             user.setCredit(150000);

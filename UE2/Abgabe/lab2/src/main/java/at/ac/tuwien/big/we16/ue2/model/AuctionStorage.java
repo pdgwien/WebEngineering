@@ -7,33 +7,33 @@ public class AuctionStorage {
 
     private List<Auction> auctions;
 
-    public AuctionStorage(){
+    public AuctionStorage() {
         auctions = new ArrayList<Auction>();
     }
 
-    public List<Auction> getAuctions(){
+    public List<Auction> getAuctions() {
         List<Auction> l = new ArrayList<Auction>();
         l.addAll(auctions);
         return l;
     }
 
-    public void addAuction(Auction auction){
+    public void addAuction(Auction auction) {
         auctions.add(auction);
     }
 
-    public Auction getAuctionByName(String name){
-        for(Auction a : auctions){
-            if(a.getName().equals(name)){
+    public Auction getAuctionByName(String name) {
+        for (Auction a : auctions) {
+            if (a.getName().equals(name)) {
                 return a;
             }
         }
         return null;
     }
 
-    public List<Auction> getExpiredAuctions(){
+    public List<Auction> getExpiredAuctions() {
         List<Auction> l = new ArrayList<Auction>();
-        for(Auction a : auctions){
-            if(a.isExpired()){
+        for (Auction a : auctions) {
+            if (a.isExpired()) {
                 l.add(a);
             }
         }

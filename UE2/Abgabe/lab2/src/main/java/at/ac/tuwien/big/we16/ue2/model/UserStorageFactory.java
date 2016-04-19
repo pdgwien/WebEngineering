@@ -8,8 +8,8 @@ public class UserStorageFactory {
 
     private static UserStorage userStorage;
 
-    public static UserStorage getUserStorage(){
-        if(userStorage == null){
+    public static UserStorage getUserStorage() {
+        if (userStorage == null) {
             userStorage = new UserStorage();
         }
         return userStorage;

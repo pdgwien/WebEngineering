@@ -22,23 +22,22 @@ public class BigBidConfigurator extends ServerEndpointConfig.Configurator {
 
     /**
      * From http://stackoverflow.com/a/17994303
-     *
+     * <p>
      * Saves a reference to the HttpSession in the socket's session.
      */
     @Override
-    public void modifyHandshake(ServerEndpointConfig config, HandshakeRequest request, HandshakeResponse response)
-    {
+    public void modifyHandshake(ServerEndpointConfig config, HandshakeRequest request, HandshakeResponse response) {
         HttpSession httpSession = (HttpSession) request.getHttpSession();
         config.getUserProperties().put(HttpSession.class.getName(), httpSession);
     }
 
     /**
      * Useful: http://www.programmingforliving.com/2013/08/websocket-tomcat-8-ServerEndpointConfig-Configurator.html
-     *
+     * <p>
      * Injects the notifier service into the socket endpoint.
      */
     @Override
-     public <T> T getEndpointInstance(Class<T> endpointClass) throws InstantiationException {
+    public <T> T getEndpointInstance(Class<T> endpointClass) throws InstantiationException {
         return (T) (new BigBidEndpoint(this.notifierService));
     }
 }

@@ -8,19 +8,19 @@ import java.util.List;
  */
 public class UserStorage {
 
-    public UserStorage(){
+    private List<User> users;
+
+    public UserStorage() {
         users = new ArrayList<User>();
     }
 
-    private List<User> users;
-
-    public void addUser(User user){
+    public void addUser(User user) {
         users.add(user);
     }
 
-    public User getUserByEmail(String email){
-        for (User u : users){
-            if(u.getEmail().equals(email))
+    public User getUserByEmail(String email) {
+        for (User u : users) {
+            if (u.getEmail().equals(email))
                 return u;
         }
         return null;
