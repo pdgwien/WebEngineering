@@ -31,8 +31,8 @@ bidderName = auction.getHighestBidder().getFullName();
         <div class="details-data">
             <h2 class="main-headline" id="productheadline"><%=auction.getName()%></h2>
 
-            <% if (auction.isExpired()) { %>
-            <div class="auction-expired-text" >
+
+            <div class="auction-expired-text" style="display: <%=auction.isExpired()?"block":"none"%>;">
                 <p>
                     Diese Auktion ist bereits abgelaufen.
                     Das Produkt wurde um
@@ -40,8 +40,7 @@ bidderName = auction.getHighestBidder().getFullName();
                     <span class="highest-bidder"><%=bidderName%></span> verkauft.
                 </p>
             </div>
-            <% } else { %>
-            <div class="auction-active">
+            <div class="auction-active" style="display: <%=auction.isExpired()?"none":"block"%>;" >
                 <p class="detail-time">Restzeit: <span data-end-time="<%=auction.getExpirationDate()%>"
                                                        class="detail-rest-time js-time-left"></span>
                 </p>
@@ -57,7 +56,6 @@ bidderName = auction.getHighestBidder().getFullName();
                     <input type="submit" id="submit-price" class="bid-form-field button" name="submit-price" value="Bieten">
                 </form>
             </div>
-            <% } %>
         </div>
     </main>
 </div>

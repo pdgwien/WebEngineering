@@ -115,10 +115,10 @@ $(".bid-form").submit(function(event) {
     $.post("/bid",x,function (data) {
         if(data.bidSuccess == true) {
             $(".bid-error").css({"display":"none"});
-            $(".balance").innerHTML(formatCurrency(data.newBalance/100));
-            $(".running-auctions-count").innerHTML(data.auctionCount);
-            $(".highest-bidder").innerHTML(data.highestBidder);
-            $(".highest-bid").innerHTML(formatCurrency(data.newBid/100));
+            $(".balance")[0].innerHTML=formatCurrency(data.newBalance/100);
+            $(".running-auctions-count")[0].innerHTML=data.auctionCount;
+            $(".highest-bidder")[0].innerHTML=data.highestBidder;
+            $(".highest-bid")[0].innerHTML=formatCurrency(data.newBid/100);
         }else{
             $(".bid-error").css({"display":"block"});
         }
@@ -164,7 +164,13 @@ function handleAuctionExpired(message) {
     $(".lost-auctions-count")[0].innerHTML = message.lostAuctions;
 
     if (window.location.pathname == "/details") {
+        var name = $(".main-headline")[0];
         $.get('overview', function (data) {});
+
+        if(name.innerHTML == message.auction) {
+            $(".auction-active").hide();
+            $(".auction-expired-text").show();
+        }
     }
 }
 
