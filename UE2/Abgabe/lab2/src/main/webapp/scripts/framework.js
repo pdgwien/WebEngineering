@@ -107,7 +107,67 @@ function formatCurrency(x) {
 // change the URL.
 var socket = new WebSocket("ws://localhost:8080/socket");
 socket.onmessage = function (event) {
-
+    var message = JSON.parse(event.data);
     /***  write your code here ***/
 
+    switch (message.type) {
+        case "balance":
+            handleBalance(message);
+            break;
+        case "bid":
+            handleBid(message);
+            break;
+        case "auctionExpired":
+            handleAuctionExpired(message);
+            break;
+    }
 };
+
+function handleBalance(message) {
+
+    $(".balance")[0].innerHTML = formatCurrency(message.balance/100);
+    if (window.location.pathname == "/details") {
+        $.get('overview', function (data) {});
+    }
+
+}
+
+function handleAuctionExpired(message) {
+    if(window.location.pathname == "/login")
+        return;
+
+    $(".balance")[0].innerHTML = formatCurrency(message.balance/100);
+    $(".running-auctions-count")[0].innerHTML = message.currentAuctions;
+    $(".won-auctions-count")[0].innerHTML = message.wonAuctions;
+    $(".lost-auctions-count")[0].innerHTML = message.lostAuctions;
+
+    if (window.location.pathname == "/details") {
+        $.get('overview', function (data) {});
+    }
+}
+
+function handleBid(message) {
+    if (window.location.pathname == "/overview") {
+
+        var products = document.getElementsByClassName("product-name");
+
+        for (var i = 0; i < products.length; i++) {
+
+            if(products[i].innerHTML == message.auction){
+
+                $(products[i]).siblings(".product-price")[0].innerHTML=formatCurrency(message.newBid/100);
+                $(products[i]).siblings(".product-highest")[0].innerHTML=message.userFullName;
+
+            }
+        }
+
+    } else if (window.location.pathname == "/details"){
+        var name = $(".main-headline")[0];
+        if(name.innerHTML == message.auction){
+            $(".auction-active .highest-bid")[0].innerHTML=formatCurrency(message.newBid/100);
+            $(".auction-active .highest-bidder")[0].innerHTML=message.userFullName;
+
+            $.get('overview', function(data) {});
+        }
+    }
+}

@@ -31,7 +31,8 @@ bidderName = auction.getHighestBidder().getFullName();
         <div class="details-data">
             <h2 class="main-headline" id="productheadline"><%=auction.getName()%></h2>
 
-            <div class="auction-expired-text" style="display:none">
+            <% if (auction.isExpired()) { %>
+            <div class="auction-expired-text" >
                 <p>
                     Diese Auktion ist bereits abgelaufen.
                     Das Produkt wurde um
@@ -39,20 +40,24 @@ bidderName = auction.getHighestBidder().getFullName();
                     <span class="highest-bidder"><%=bidderName%></span> verkauft.
                 </p>
             </div>
-            <p class="detail-time">Restzeit: <span data-end-time="<%=auction.getExpirationDate()%>"
-                                                   class="detail-rest-time js-time-left"></span>
-            </p>
-            <form class="bid-form" method="post" action="">
-                <label class="bid-form-field" id="highest-price">
-                    <span class="highest-bid"><%=auction.displayHighestBid()%></span>
-                    <span class="highest-bidder"><%=bidderName%></span>
-                </label>
-                <label class="accessibility" for="new-price"></label>
-                <input type="number" step="0.01" min="0" id="new-price" class="bid-form-field form-input"
-                       name="new-price" required>
-                <p class="bid-error">Es gibt bereits ein höheres Gebot oder der Kontostand ist zu niedrig.</p>
-                <input type="submit" id="submit-price" class="bid-form-field button" name="submit-price" value="Bieten">
-            </form>
+            <% } else { %>
+            <div class="auction-active">
+                <p class="detail-time">Restzeit: <span data-end-time="<%=auction.getExpirationDate()%>"
+                                                       class="detail-rest-time js-time-left"></span>
+                </p>
+                <form class="bid-form" method="post" action="">
+                    <label class="bid-form-field" id="highest-price">
+                        <span class="highest-bid"><%=auction.displayHighestBid()%></span>
+                        <span class="highest-bidder"><%=bidderName%></span>
+                    </label>
+                    <label class="accessibility" for="new-price"></label>
+                    <input type="number" step="0.01" min="0" id="new-price" class="bid-form-field form-input"
+                           name="new-price" required>
+                    <p class="bid-error">Es gibt bereits ein höheres Gebot oder der Kontostand ist zu niedrig.</p>
+                    <input type="submit" id="submit-price" class="bid-form-field button" name="submit-price" value="Bieten">
+                </form>
+            </div>
+            <% } %>
         </div>
     </main>
 </div>

@@ -38,7 +38,7 @@ public class Auction {
                         notifierService.send(this.getHighestBidder(), new BalanceMessage(this.getHighestBidder().getCredit()));
                     }
                     this.setHighestBidder(user);
-                    notifierService.broadcast(new BidMessage(user.getEmail(), amount, this.getName()));
+                    notifierService.broadcast(new BidMessage(user.getFullName(), amount, this.getName()));
                     if (bidders.add(user)) {
                         user.setCurrentAuctions(user.getCurrentAuctions() + 1);
                     }
@@ -49,7 +49,7 @@ public class Auction {
     }
 
     public String displayHighestBid() {
-        return ((highestBid / 100) + "," + (highestBid % 100 == 0 ? "00" : highestBid % 100) + "€");
+        return ((highestBid / 100) + "," + (highestBid % 100 == 0 ? "00" : highestBid % 100) + " €");
     }
 
     public long getHighestBid() {
