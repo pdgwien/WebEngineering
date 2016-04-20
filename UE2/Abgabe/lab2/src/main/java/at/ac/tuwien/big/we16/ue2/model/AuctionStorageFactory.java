@@ -43,7 +43,6 @@ public class AuctionStorageFactory {
     }
 
     private static Auction initAuction(Auction a) {
-//        a.setExpirationDate("2016,04,17,15,30,00,000");
         a.setExpirationDate(buildExpirationDate());
         a.setHighestBid(0);
         a.setHighestBidder(null);
@@ -57,11 +56,10 @@ public class AuctionStorageFactory {
         return storage;
     }
 
-    public static String buildExpirationDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss,sss");
+    public static Date buildExpirationDate() {
         Calendar cal = Calendar.getInstance();
         Date date = new Date(cal.getTimeInMillis() + ThreadLocalRandom.current().nextLong(MINUTE_IN_MILLIS, 10 * MINUTE_IN_MILLIS));
-        return sdf.format(date);
+        return date;
 
     }
 }

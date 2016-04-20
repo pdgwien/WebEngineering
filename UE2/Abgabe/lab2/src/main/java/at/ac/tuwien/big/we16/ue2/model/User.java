@@ -6,7 +6,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private long credit;
+    private long balance;
     private int currentAuctions;
     private int lostAuctions;
     private int wonAuctions;
@@ -48,16 +48,16 @@ public class User {
         this.password = password;
     }
 
-    public String displayCredit() {
-        return ((credit / 100) + "," + (credit % 100 == 0 ? "00" : credit % 100) + "€");
+    public String displayBalance() {
+        return ((balance / 100) + "," + (balance % 100 == 0 ? "00" : balance % 100) + "€");
     }
 
-    public long getCredit() {
-        return credit;
+    public long getBalance() {
+        return balance;
     }
 
-    public void setCredit(long credit) {
-        this.credit = credit;
+    public void setBalance(long balance) {
+        this.balance = balance;
     }
 
     public int getCurrentAuctions() {

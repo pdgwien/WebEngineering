@@ -5,7 +5,6 @@ import at.ac.tuwien.big.we16.ue2.message.BidMessage;
 import at.ac.tuwien.big.we16.ue2.service.NotifierService;
 import at.ac.tuwien.big.we16.ue2.service.ServiceFactory;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -13,7 +12,7 @@ import java.util.Set;
 
 public class Auction {
     private long highestBid;
-    private String expirationDate;
+    private Date expirationDate;
     private User highestBidder;
     private String name;
     private String image;
@@ -28,20 +27,21 @@ public class Auction {
     public boolean bid(User user, long amount) {
         if (!this.isExpired()) {
             if (amount > this.getHighestBid()) {
-                if (user.getCredit() >= amount) {
-                    user.setCredit(user.getCredit() - amount);
+                if (user.getBalance() >= amount) {
+                    user.setBalance(user.getBalance() - amount);
                     if (this.getHighestBidder() != null) {
-                        this.getHighestBidder().setCredit(this.getHighestBidder().getCredit() + this.getHighestBid());
+                        this.getHighestBidder().setBalance(this.getHighestBidder().getBalance() + this.getHighestBid());
                     }
                     this.setHighestBid(amount);
                     if (this.getHighestBidder() != null) {
-                        notifierService.send(this.getHighestBidder(), new BalanceMessage(this.getHighestBidder().getCredit()));
+                        notifierService.send(this.getHighestBidder(), new BalanceMessage(this.getHighestBidder().getBalance()));
                     }
                     this.setHighestBidder(user);
                     notifierService.broadcast(new BidMessage(user.getFullName(), amount, this.getName()));
                     if (bidders.add(user)) {
                         user.setCurrentAuctions(user.getCurrentAuctions() + 1);
                     }
+                    return true;
                 }
             }
         }
@@ -64,27 +64,16 @@ public class Auction {
     @return The expiration date, format: "yyyy,MM,dd,HH,mm,ss,sss"
      */
     public String getExpirationDate() {
-        return expirationDate;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss,sss");
+        return sdf.format(expirationDate);
     }
 
-    /*
-    @param expirationDate format: "yyyy,MM,dd,HH,mm,ss,sss"
-     */
-    public void setExpirationDate(String expirationDate) {
+    public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
 
     public boolean isExpired() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy,MM,dd,HH,mm,ss,sss");
-        boolean expired = false;
-        try {
-            Date expDate = sdf.parse(expirationDate);
-            expired = expDate.before(new Date());
-        } catch (ParseException e) {
-            System.out.println("Parsing of Date-String failed");
-            e.printStackTrace();
-        }
-        return expired;
+        return expirationDate.before(new Date());
     }
 
     public User getHighestBidder() {

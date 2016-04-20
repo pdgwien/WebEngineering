@@ -49,7 +49,7 @@ public class NotifierService {
         for (Map.Entry<Session, HttpSession> entry : clients.entrySet()) {
             User user = (User) entry.getValue().getAttribute("user");
             try {
-                entry.getKey().getBasicRemote().sendText(gson.toJson(new AuctionExpiredMessage(auction.getName(), user.getCredit(),
+                entry.getKey().getBasicRemote().sendText(gson.toJson(new AuctionExpiredMessage(auction.getName(), user.getBalance(),
                         user.getCurrentAuctions(), user.getLostAuctions(), user.getWonAuctions())));
             } catch (IOException e) {
                 e.printStackTrace();

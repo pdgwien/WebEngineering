@@ -23,7 +23,7 @@ public class BackgroundJobManager implements ServletContextListener {
         scheduler = Executors.newSingleThreadScheduledExecutor();
         User computer = new User();
         computer.setEmail("robot@roboto.corp");
-        computer.setCredit(999999999);
+        computer.setBalance(999999999);
         computer.setFirstName("Mr.");
         computer.setLastName("Roboto");
         computer.setCurrentAuctions(0);
@@ -33,7 +33,7 @@ public class BackgroundJobManager implements ServletContextListener {
         scheduler.scheduleAtFixedRate(new ComputerBidJob(computer), 0, 10, TimeUnit.SECONDS);
         User computer2 = new User();
         computer2.setEmail("siri@apple.com");
-        computer2.setCredit(999999999);
+        computer2.setBalance(999999999);
         computer2.setFirstName("Ms.");
         computer2.setLastName("Siri");
         computer2.setCurrentAuctions(0);

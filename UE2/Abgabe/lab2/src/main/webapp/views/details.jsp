@@ -9,7 +9,7 @@ bidderName = auction.getHighestBidder().getFullName();
 <html lang="de">
 <head>
     <meta charset="utf-8">
-    <title>BIG Bid - Der Pate (Film)</title>
+    <title><%=auction.getName()%></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../styles/style.css">
 </head>

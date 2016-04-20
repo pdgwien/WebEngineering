@@ -5,7 +5,7 @@
         <dd class="user-name"><%=user.getFirstName()%> <%=user.getLastName()%></dd>
         <dt>Kontostand:</dt>
         <dd>
-            <span class="balance"><%=user.displayCredit()%></span>
+            <span class="balance"><%=user.displayBalance()%></span>
         </dd>
         <dt>Laufend:</dt>
         <dd>
@@ -26,5 +26,6 @@
 </div>
 <div class="recently-viewed-container">
     <h3 class="recently-viewed-headline">Zuletzt angesehen</h3>
+    <!-- TODO: Implement Local Storage-->
     <ul class="recently-viewed-list"></ul>
 </div>

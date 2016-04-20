@@ -105,6 +105,28 @@ function formatCurrency(x) {
 
 // Depending on the setup of your server, servlet, and socket, you may have to
 // change the URL.
+
+//Ajax-Code
+
+
+$(".bid-form").submit(function(event) {
+    event.preventDefault();
+    var x = $(".bid-form").serialize() + "&auctionName=" + document.getElementById("productheadline").innerHTML;
+    $.post("/bid",x,function (data) {
+        if(data.bidSuccess == true) {
+            $(".bid-error").css({"display":"none"});
+            $(".balance").innerHTML(formatCurrency(data.newBalance/100));
+            $(".running-auctions-count").innerHTML(data.auctionCount);
+            $(".highest-bidder").innerHTML(data.highestBidder);
+            $(".highest-bid").innerHTML(formatCurrency(data.newBid/100));
+        }else{
+            $(".bid-error").css({"display":"block"});
+        }
+    })
+});
+
+
+
 var socket = new WebSocket("ws://localhost:8080/socket");
 socket.onmessage = function (event) {
     var message = JSON.parse(event.data);

@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet {
         if (user == null) {
             user = new User();
             user.setEmail(email);
-            user.setCredit(150000);
+            user.setBalance(150000);
             String[] emailParts = email.split("@");
             user.setFirstName(emailParts[0]);
             user.setLastName(emailParts[1]);

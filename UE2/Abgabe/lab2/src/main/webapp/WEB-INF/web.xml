@@ -4,6 +4,18 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
     <!-- Add your deployment description here -->
+    <description>Ajax-Bid-Controller</description>
+    <display-name>Bid</display-name>
+    <servlet>
+        <servlet-name>Bid</servlet-name>
+        <servlet-class>at.ac.tuwien.big.we16.ue2.controller.BidController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Bid</servlet-name>
+        <url-pattern>/bid</url-pattern>
+    </servlet-mapping>
+    
+    
     <description>LogoutController</description>
     <display-name>Logout</display-name>
     <servlet>
