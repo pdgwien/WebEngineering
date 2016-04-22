@@ -183,6 +183,14 @@ function handleBid(message) {
 
             if(products[i].innerHTML == message.auction){
 
+                var currentUser = $(".user-name")[0].innerHTML;
+                var currentHighest = $(products[i]).siblings(".product-highest")[0].innerHTML;
+
+                if(message.userFullName != currentUser && currentUser==currentHighest){
+                    var highlighted = $(products[i]).closest(".highlight")[0];
+                    $(highlighted).removeClass("highlight");
+                }
+                
                 $(products[i]).siblings(".product-price")[0].innerHTML=formatCurrency(message.newBid/100);
                 $(products[i]).siblings(".product-highest")[0].innerHTML=message.userFullName;
 
