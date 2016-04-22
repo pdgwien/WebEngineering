@@ -199,3 +199,34 @@ function handleBid(message) {
         }
     }
 }
+
+$( document ).ready(function() {
+
+    if(supportsLocalStorage() && localStorage.getItem("history") !== null ){
+
+        $(".recently-viewed-list").show();
+        $(".recently-viewed-headline").show();
+
+        var recent = JSON.parse(localStorage.getItem("history"));
+
+        var ul = $(".recently-viewed-list")[0];
+
+        for (var i = 0; i<recent.length; ++i) {
+
+            var li = document.createElement("li");
+            li.setAttribute("class", "recently-viewed-link");
+
+            var a = document.createElement("a");
+            a.setAttribute("href" , "http://localhost:8080/details?name=" + recent[i]);
+            a.innerHTML = recent[i];
+
+            li.appendChild(a);
+            ul.appendChild(li);
+        }
+
+    } else {
+        $(".recently-viewed-list").hide();
+        $(".recently-viewed-headline").hide();
+    }
+
+});
