@@ -31,18 +31,7 @@ public class BidController extends HttpServlet{
 
         String bidString = request.getParameter("new-price");
 
-        //Escape the escape-character to escape the meta-character in regex
-        String[] bidStrings = bidString.split("\\.");
-
-
-        long long1 = Long.parseLong(bidStrings[0])*100;
-        long long2 = 0;
-        if(bidStrings.length==2){
-            long2 = Long.parseLong(bidStrings[1]);
-        }
-
-
-        long newBid = long1 + long2;
+        long newBid = (long) (Double.parseDouble(bidString) * 100);
 
         boolean success = auction.bid(user, newBid);
         long newBalance = user.getBalance();

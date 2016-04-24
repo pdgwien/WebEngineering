@@ -210,6 +210,10 @@ function handleBid(message) {
 
 $( document ).ready(function() {
 
+    $( ".money" ).each(function() {
+        $(this).html(formatCurrency(parseFloat($(this).text())));
+    });
+
     if(supportsLocalStorage() && localStorage.getItem("history") !== null ){
 
         $(".recently-viewed-list").show();

@@ -5,7 +5,7 @@
         <dd class="user-name"><%=user.getFirstName()%> <%=user.getLastName()%></dd>
         <dt>Kontostand:</dt>
         <dd>
-            <span class="balance"><%=user.displayBalance()%></span>
+            <span class="balance money"><%=user.displayBalance()%></span>
         </dd>
         <dt>Laufend:</dt>
         <dd>

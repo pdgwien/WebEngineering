@@ -36,7 +36,7 @@ bidderName = auction.getHighestBidder().getFullName();
                 <p>
                     Diese Auktion ist bereits abgelaufen.
                     Das Produkt wurde um
-                    <span class="highest-bid"><%=auction.displayHighestBid()%></span> an
+                    <span class="highest-bid money"><%=auction.displayHighestBid()%></span> an
                     <span class="highest-bidder"><%=bidderName%></span> verkauft.
                 </p>
             </div>
@@ -46,7 +46,7 @@ bidderName = auction.getHighestBidder().getFullName();
                 </p>
                 <form class="bid-form" method="post" action="">
                     <label class="bid-form-field" id="highest-price">
-                        <span class="highest-bid"><%=auction.displayHighestBid()%></span>
+                        <span class="highest-bid money"><%=auction.displayHighestBid()%></span>
                         <span class="highest-bidder"><%=bidderName%></span>
                     </label>
                     <label class="accessibility" for="new-price"></label>

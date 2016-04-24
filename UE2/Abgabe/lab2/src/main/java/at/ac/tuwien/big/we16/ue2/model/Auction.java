@@ -5,6 +5,7 @@ import at.ac.tuwien.big.we16.ue2.message.BidMessage;
 import at.ac.tuwien.big.we16.ue2.service.NotifierService;
 import at.ac.tuwien.big.we16.ue2.service.ServiceFactory;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -49,7 +50,8 @@ public class Auction {
     }
 
     public String displayHighestBid() {
-        return ((highestBid / 100) + "," + (highestBid % 100 == 0 ? "00" : highestBid % 100) + " €");
+        DecimalFormat decim = new DecimalFormat("0.00");
+        return decim.format(highestBid/100.0);
     }
 
     public long getHighestBid() {

@@ -1,5 +1,7 @@
 package at.ac.tuwien.big.we16.ue2.model;
 
+import java.text.DecimalFormat;
+
 public class User {
 
     private String firstName;
@@ -49,7 +51,8 @@ public class User {
     }
 
     public String displayBalance() {
-        return ((balance / 100) + "," + (balance % 100 == 0 ? "00" : balance % 100) + "€");
+        DecimalFormat decim = new DecimalFormat("0.00");
+        return decim.format(balance/100.0);
     }
 
     public long getBalance() {

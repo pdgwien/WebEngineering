@@ -26,7 +26,7 @@ for(Auction a : auctions){
             <dt>Bezeichnung</dt>
             <dd class="product-name"><%=a.getName()%></dd>
             <dt>Preis</dt>
-            <dd class="product-price">
+            <dd class="product-price money">
                 <%=a.displayHighestBid()%>
             </dd>
             <dt>Verbleibende Zeit</dt>
