@@ -16,7 +16,7 @@
     <ul class="products">
         <c:forEach items="${products}" var="product">
             <li class="product-outer" data-product-id="${product.id}">
-                <a href="product/${product.id}" class="product <c:if test="${product.hasAuctionEnded()}">expired</c:if> <c:if test="${product.highestBid.isBy(user)}">highlight</c:if>" title="Mehr Informationen zu ${product.name}">
+                <a href="product/${product.id}" class="product <c:if test="${product.hasAuctionEnded()}">expired</c:if> <c:if test="${not empty product.highestBid && product.highestBid.isBy(user)}">highlight</c:if>" title="Mehr Informationen zu ${product.name}">
                     <img class="product-image" src="images/${product.image}" alt="${product.imageAlt}">
                     <dl class="product-properties properties">
                         <dt>Bezeichnung</dt>
@@ -32,7 +32,7 @@
                             </c:choose>
                         </dd>
                         <dt>Verbleibende Zeit</dt><dd data-end-time="<fmt:formatDate value="${product.auctionEnd}" pattern="yyyy,MM,dd,HH,mm,ss,SSS"/>" data-end-text="abgelaufen" class="product-time js-time-left"></dd>
-                        <dt>H\u00F6chstbietende/r</dt><dd class="product-highest">${product.highestBid.user.fullName}</dd>
+                        <dt>H&ouml;chstbietende/r</dt><dd class="product-highest">${product.highestBid.user.fullName}</dd>
                     </dl>
                 </a>
             </li>

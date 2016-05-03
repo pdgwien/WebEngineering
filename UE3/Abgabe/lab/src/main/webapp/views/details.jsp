@@ -48,7 +48,7 @@
                     </label>
                     <label class="accessibility" for="new-price"></label>
                     <input type="number" step="0.01" min="0" id="new-price" class="bid-form-field form-input" name="new-price" required>
-                    <p class="bid-error">Es gibt bereits ein h\u00F6heres Gebot oder der Kontostand ist zu niedrig.</p>
+                    <p class="bid-error">Es gibt bereits ein h&ouml;heres Gebot oder der Kontostand ist zu niedrig.</p>
                     <input type="submit" id="submit-price" class="bid-form-field button" name="submit-price" value="Bieten">
                 </form>
             </c:if>

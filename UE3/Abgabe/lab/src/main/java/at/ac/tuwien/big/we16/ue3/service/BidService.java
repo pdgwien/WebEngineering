@@ -6,9 +6,15 @@ import at.ac.tuwien.big.we16.ue3.model.Bid;
 import at.ac.tuwien.big.we16.ue3.model.Product;
 import at.ac.tuwien.big.we16.ue3.model.User;
 
+import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 
 public class BidService {
+    private EntityManager em;
+
+    public BidService() {
+        this.em = EntityManagerFactoryService.getEntityManager();
+    }
 
     public void makeBid(User user, Product product, int centAmount) throws InvalidBidException, UserNotFoundException {
         if (product.hasAuctionEnded() || !product.isValidBidAmount(centAmount) || !user.hasSufficientBalance(centAmount)) {
@@ -30,12 +36,13 @@ public class BidService {
         User highestBidder = null;
 
         if (product.hasBids()) {
+            highestBidder = product.getHighestBid().getUser();
             if (product.getHighestBid().isBy(user)) {
                 // The given user already is the highest bidder, so we only substract the difference.
                 decreaseAmount = centAmount - product.getHighestBid().getAmount();
             }
             else {
-                // TODO reimburse current highest bidder
+                highestBidder.increaseBalance(product.getHighestBid().getAmount());
                 ServiceFactory.getNotifierService().notifyReimbursement(highestBidder);
             }
         }
@@ -47,7 +54,7 @@ public class BidService {
         user.decreaseBalance(decreaseAmount);
         Bid bid = new Bid(centAmount, user);
 
-        //TODO: write to db
+        product.addBid(bid);
 
         ServiceFactory.getNotifierService().notifyAllAboutBid(bid);
     }
