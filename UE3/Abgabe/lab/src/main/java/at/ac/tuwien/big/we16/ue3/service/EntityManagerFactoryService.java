@@ -25,7 +25,12 @@ public class EntityManagerFactoryService implements ServletContextListener {
 
     public static EntityManager getEntityManager() {
         if (entityManagerFactory == null) {
-            throw new IllegalStateException("Context not initialized.");
+            entityManagerFactory = Persistence.createEntityManagerFactory("defaultPersistenceUnit");
+//            throw new IllegalStateException("Context not initialized.");
+// TODO wenn hier eine Exception geschossen wird, dann läuft `startExpiredProductsThread` in NotifierService nicht durch.
+/*              BigBidConfigurator erstellt NotifierService und ruft getEntityManager auf, bevor contextInitialized getriggert wird
+                und somit wird immer die Exception geworfen, weil die entityManagerFactory noch nicht erstellt wurde
+                */
         }
 
         return entityManagerFactory.createEntityManager();

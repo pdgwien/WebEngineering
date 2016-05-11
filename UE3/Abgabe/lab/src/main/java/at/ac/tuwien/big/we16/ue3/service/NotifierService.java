@@ -4,6 +4,8 @@ import at.ac.tuwien.big.we16.ue3.exception.UserNotFoundException;
 import at.ac.tuwien.big.we16.ue3.model.Bid;
 import at.ac.tuwien.big.we16.ue3.model.Product;
 import at.ac.tuwien.big.we16.ue3.model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
@@ -18,8 +20,10 @@ import java.util.stream.Collectors;
 public class NotifierService {
     private static Map<Session, HttpSession> clients = new ConcurrentHashMap<>();
     private final ScheduledExecutorService executor;
+    private static final Logger logger = LogManager.getLogger(NotifierService.class);
 
     public NotifierService() {
+        logger.info("Constructing the NotifierService");
         this.executor = Executors.newSingleThreadScheduledExecutor();
         this.startExpiredProductsThread();
     }

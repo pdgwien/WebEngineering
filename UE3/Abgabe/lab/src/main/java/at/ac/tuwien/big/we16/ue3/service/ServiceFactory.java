@@ -6,6 +6,7 @@ public abstract class ServiceFactory {
     private static ComputerUserService computerUserService;
     private static UserService userService;
     private static BidService bidService;
+    private static BoardService boardService;
 
     public static ProductService getProductService() {
         if (productService == null) {
@@ -43,6 +44,13 @@ public abstract class ServiceFactory {
             userService = new UserService();
         }
         return userService;
+    }
+
+    public static BoardService getBoardService(){
+        if (boardService == null) {
+            boardService = new BoardService();
+        }
+        return boardService;
     }
 
 

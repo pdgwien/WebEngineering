@@ -28,6 +28,7 @@ import java.util.Locale;
 
 
 public class ProductService {
+
     private EntityManager em;
     private static final Logger logger = LogManager.getLogger(ProductService.class);
     private TypedQuery<Product> query;
@@ -65,11 +66,15 @@ public class ProductService {
 
     //TODO: write changed users and products to db
     public Collection<Product> checkProductsForExpiration() {
+        logger.info("Checking for expired products");
         Collection<Product> newlyExpiredProducts = new ArrayList<>();
         this.getAllProducts().stream().filter(product -> !product.hasExpired() && product.hasAuctionEnded()).forEach(product -> {
             product.setExpired();
             newlyExpiredProducts.add(product);
             if (product.hasBids()) {
+
+                ServiceFactory.getBoardService().postSale(product);
+
                 Bid highestBid = product.getHighestBid();
                 for (User user : product.getUsers()) {
                     user.decrementRunningAuctions();
