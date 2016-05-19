@@ -6,6 +6,7 @@
     <jsp:param name="title" value="Registrieren" />
     <jsp:param name="showLogin" value="true" />
 </jsp:include>
+<jsp:useBean id="errors" scope="request" type="java.util.Map"/>
 
 <main role="main" aria-labelledby="formheadline">
     <form class="form" method="post">
@@ -24,31 +25,31 @@
             </div>
             <div class="form-row">
                 <label class="form-label" for="firstname-input">
-                    Vorname *
+                    Vorname * <span style="color:red"><%=errors.get("firstname")%></span>
                 </label>
                 <input type="text" name="firstname" id="firstname-input" class="form-input">
             </div>
             <div class="form-row">
                 <label class="form-label" for="lastname-input">
-                    Nachname *
+                    Nachname * <span style="color:red"><%=errors.get("lastname")%></span>
                 </label>
                 <input type="text" name="lastname" id="lastname-input" class="form-input">
             </div>
             <div class="form-row">
                 <label class="form-label" for="dateofbirth-input">
-                    Geburtsdatum *
+                    Geburtsdatum * <span style="color:red"><%=errors.get("dateOfBirth")%></span>
                 </label>
                 <input type="text" name="dateofbirth" id="dateofbirth-input" class="form-input">
             </div>
             <div class="form-row">
                 <label class="form-label" for="email-input">
-                    Email *
+                    Email * <span style="color:red"><%=errors.get("email")%></span>
                 </label>
                 <input type="text" name="email" id="email-input" class="form-input">
             </div>
             <div class="form-row">
                 <label class="form-label" for="password-input">
-                    Passwort *
+                    Passwort * <span style="color:red"><%=errors.get("password")%></span>
                 </label>
                 <input type="password" name="password" id="password-input" class="form-input">
             </div>

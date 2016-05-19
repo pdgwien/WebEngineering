@@ -25,6 +25,9 @@
             <input type="password" name="password" id="password-input" required class="form-input" minlength="4" maxlength="12">
             <span id="password-error" class="error-text"></span>
         </div>
+        <%if(error){%>
+        <p style="color:red; text-align:center">Invalid user/password combination</p>
+        <%}%>
         <div class="form-row form-row-center">
             <button class="button button-submit">
                 Anmelden
