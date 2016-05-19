@@ -3,6 +3,7 @@ package at.ac.tuwien.big.we16.ue3.service;
 import at.ac.tuwien.big.we16.ue3.model.Product;
 import com.google.gson.Gson;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -17,6 +18,7 @@ import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,16 +47,25 @@ public class BoardService {
             HttpResponse response = httpClient.execute(post);
             String json = EntityUtils.toString(response.getEntity());
 
-            if (response.getStatusLine().getStatusCode()==200){
+            if (response.getStatusLine().getStatusCode() == 200) {
                 ResponsePojo boardResponse = gson.fromJson(json, ResponsePojo.class);
 
+                logger.info("Posts to board successful! UUID: " + boardResponse.id);
+
                 tweetUUID(boardResponse);
+            } else {
+
+                System.err.println("Fehlercode: " + response.getStatusLine().getStatusCode() + "    Grund: " + response.getStatusLine().getReasonPhrase());
             }
-
-        } catch(IOException e){ //TODO Fehler Separat abfangen
-
+        } catch (ClientProtocolException e){
+            System.err.println("Http protocol error ocurred!");
             e.printStackTrace();
-
+        }  catch(UnsupportedEncodingException e){
+            System.err.println("Default HTTP charset not supported!");
+            e.printStackTrace();
+        } catch(IOException e){
+            System.err.println("Connection aborted or problems during HttpResponse parsing!");
+            System.err.println(e);
         }
     }
 
@@ -84,8 +95,10 @@ public class BoardService {
 
 
         } catch(ParseException e){
-            logger.error("Bad date format from server!");
+            System.err.println("Bad date format from server!");
+            e.printStackTrace();
         } catch (TwitterException e) {
+            System.err.println("Twitter service or network not available!");
             e.printStackTrace();
         }
     }
@@ -108,7 +121,6 @@ public class BoardService {
 
             SimpleDateFormat sdf = new SimpleDateFormat(
                     "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-//            sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
             Date now = new Date();
 
             date = sdf.format(now);
