@@ -8,7 +8,6 @@ import at.ac.tuwien.big.we16.ue3.exception.RequestException;
 import at.ac.tuwien.big.we16.ue3.exception.UserNotFoundException;
 import at.ac.tuwien.big.we16.ue3.productdata.DataGenerator;
 import at.ac.tuwien.big.we16.ue3.service.AuthService;
-import at.ac.tuwien.big.we16.ue3.service.BidService;
 import at.ac.tuwien.big.we16.ue3.service.ServiceFactory;
 import at.ac.tuwien.big.we16.ue3.service.UserService;
 
@@ -36,19 +35,17 @@ public class BigBidServlet extends HttpServlet {
 
     @Override
     public void init() {
-        UserService userService = new UserService();
+        UserService userService = ServiceFactory.getUserService();
         this.authService = new AuthService(userService);
-        this.productController = new ProductController(ServiceFactory.getProductService(), this.authService, new BidService());
+        this.productController = new ProductController(ServiceFactory.getProductService(), this.authService, ServiceFactory.getBidService());
         this.authController = new AuthController(this.authService);
         this.userController = new UserController(userService, this.authService);
         (new DataGenerator()).generateData();
-        //TODO uncomment the following code and possibly change the email address
-//        try {
-//            
-//             ServiceFactory.getComputerUserService().start(userService.getUserByEmail("jane.doe@example.com"));
-//        } catch (UserNotFoundException e) {
-//            // ignore
-//        }
+        try {
+             ServiceFactory.getComputerUserService().start(userService.getUserByEmail("siri@apple.com"));
+        } catch (UserNotFoundException e) {
+            // ignore
+        }
     }
 
     @Override

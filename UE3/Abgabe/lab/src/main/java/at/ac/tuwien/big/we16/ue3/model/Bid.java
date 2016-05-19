@@ -1,22 +1,35 @@
 package at.ac.tuwien.big.we16.ue3.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Bid {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Basic
     private int amount;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
+
+    public Bid() {
+    }
 
     public Bid(int centAmount, User user) {
         amount = centAmount;
         this.user = user;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

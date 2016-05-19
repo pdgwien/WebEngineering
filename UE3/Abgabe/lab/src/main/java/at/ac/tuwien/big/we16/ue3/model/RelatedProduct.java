@@ -1,21 +1,33 @@
 package at.ac.tuwien.big.we16.ue3.model;
 
+import javax.persistence.*;
+
+@Entity
 public class RelatedProduct {
 
-    private String id;
-    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Basic
+    private String nameDe;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
     public String getName() {
-        return name;
+        return nameDe;
+    }
+
+    public void setName(String nameDe) {
+        this.nameDe = nameDe;
     }
 
     public Product getProduct() {

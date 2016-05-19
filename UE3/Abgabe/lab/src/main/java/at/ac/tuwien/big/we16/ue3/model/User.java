@@ -1,36 +1,58 @@
 package at.ac.tuwien.big.we16.ue3.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class User {
-
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Basic
     private String salutation;
+    @Basic
     private String firstname;
+    @Basic
     private String lastname;
+    @Basic
     private String email;
+    @Basic
     private String password;
+    @Basic
     private Date date;
+    @Basic
     private int balance;
+    @Basic
     private int runningAuctionsCount;
+    @Basic
     private int wonAuctionsCount;
+    @Basic
     private int lostAuctionsCount;
+
+    public int getId() {
+        return id;
+    }
+
 
     public String getFullName() {
         return this.firstname + " " + this.lastname;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getPassword() {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public float getConvertedBalance() {
-        float convertedBalance = (float)this.balance;
+        float convertedBalance = (float) this.balance;
         return convertedBalance / 100;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 
     public void decreaseBalance(int amount) {
@@ -77,8 +99,16 @@ public class User {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getSalutation() {
         return salutation;
+    }
+
+    public void setSalutation(String salutation) {
+        this.salutation = salutation;
     }
 
     public Date getDate() {
@@ -93,8 +123,16 @@ public class User {
         return firstname;
     }
 
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
     public String getLastname() {
         return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
 }
