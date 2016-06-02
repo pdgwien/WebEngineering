@@ -1,0 +1,71 @@
+{
+    "music": [
+        {
+            "album_name": "Californication",
+            "artist": "Red Hot Chili Peppers",
+            "year": "1999",
+            "img" : "red_hot_chili_peppers.png",
+            "dbpedia": "http://dbpedia.org/page/Californication_(album)"
+        },
+        {
+            "album_name": "Forty Licks",
+            "artist": "The Rolling Stones",
+            "year": "2002",
+            "img" : "rolling_stones.png",
+            "dbpedia": "http://dbpedia.org/page/Forty_Licks"
+        },
+        {
+            "album_name": "Reload",
+            "artist": "Metallica",
+            "year": "1997",
+            "img" : "metallica.png",
+            "dbpedia": "http://dbpedia.org/page/Reload_(Metallica_album)"
+        }
+    ],
+    "books": [
+        {
+            "title": "Pride and Prejudice",
+            "author": "Jane Austen",
+            "year": "1813",
+            "img" : "pride_and_prejudice.png",
+            "dbpedia": "http://dbpedia.org/page/Pride_and_Prejudice"
+        },
+        {
+            "title": "1984",
+            "author": "George Orwell",
+            "year": "1949",
+            "img" : "1984.png",
+            "dbpedia": "http://dbpedia.org/page/Nineteen_Eighty-Four"
+        },
+        {
+            "title": "The Great Gatsby",
+            "author": "F. Scott Fitzgerald",
+            "year": "1925",
+            "img" : "the_great_gatsby.png",
+            "dbpedia": "http://dbpedia.org/page/The_Great_Gatsby"
+        }
+    ],
+    "movies": [
+        {
+            "title": "The Godfather",
+            "director": "Francis Ford Coppola",
+            "year": "1972",
+            "img" : "the_godfather.png",
+            "dbpedia": "http://dbpedia.org/page/The_Godfather"
+        },
+        {
+            "title": "The Martian",
+            "director": "Ridley Scott",
+            "year": "2015",
+            "img" : "the_martian.png",
+            "dbpedia": "http://dbpedia.org/page/The_Martian_(film)"
+        },
+        {
+            "title": "The Wizard of Oz",
+            "director": "Victor Fleming",
+            "year": "1939",
+            "img" : "the_wizard_of_oz.png",
+            "dbpedia": "http://dbpedia.org/page/The_Wizard_of_Oz_(1939_film)"
+        }
+    ]
+}
